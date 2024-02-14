@@ -14,17 +14,21 @@ public class UserService implements UserInter {
     @Autowired
     private UserRepository userRepo;
 
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-
+    @Override
     public User saveUser(User user) {
 
         String password=passwordEncoder.encode(user.getPassword());
-        user.setRole("ROLE_USER");
         user.setPassword(password);
+        user.setRole("ROLE_USER");
+        User newuser = userRepo.save(user);
 
-        return userRepo.save(user);
+        return newuser;
     }
+
+    @Override
     public void removeSessionMessage() {
 
         HttpSession session = ((ServletRequestAttributes) (RequestContextHolder.getRequestAttributes())).getRequest()

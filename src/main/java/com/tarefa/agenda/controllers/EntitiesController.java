@@ -1,11 +1,10 @@
 package com.tarefa.agenda.controllers;
-
-import com.tarefa.agenda.entities.Task;
 import com.tarefa.agenda.entities.User;
 import com.tarefa.agenda.repositories.UserRepository;
 import com.tarefa.agenda.services.TaskService;
 import com.tarefa.agenda.services.UserService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,15 +15,15 @@ import java.security.Principal;
 @Controller
 public class EntitiesController {
 
-
+    @Autowired
     private UserService userService;
 
-
+    @Autowired
     private UserRepository userRepo;
 
-
+    @Autowired
     private TaskService taskService;
-
+    @Autowired
     private UserRepository repository;
 
     @PostMapping("/saveUser")
@@ -44,15 +43,4 @@ public class EntitiesController {
         }
         return "redirect:/register";
     }
-
-    @PostMapping("/saveTask")
-    public String saveTask(@ModelAttribute Task task, Principal principal, HttpSession session) {
-        String email = principal.getName();
-        User user = userRepo.findByEmail(email);
-        task.setUser(user);
-        taskService.saveTask(task);
-        session.setAttribute("msg", "Tarefa cadastrada com sucesso!");
-        return "redirect:/task/tasklist";
-    }
-
 }
