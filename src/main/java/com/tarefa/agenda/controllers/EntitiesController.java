@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import java.security.Principal;
+import java.util.List;
 
 
 @Controller
@@ -70,4 +71,13 @@ public class EntitiesController {
         m.addAttribute("user", user);
         return "profile";
     }
+    @GetMapping("/task/tasklist")
+    public String listTask(Principal principal, Model model) {
+        String email = principal.getName();
+        User user = userRepo.findByEmail(email);
+        List<Task> tasks = taskService.getTasksByUser(user);
+        model.addAttribute("tasks", tasks);
+        return "tasklist";
+    }
+
 }

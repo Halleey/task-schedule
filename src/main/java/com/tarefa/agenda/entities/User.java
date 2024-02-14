@@ -6,13 +6,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.management.relation.Role;
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
 @Setter
 @Table(name = "users")
 @Entity
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

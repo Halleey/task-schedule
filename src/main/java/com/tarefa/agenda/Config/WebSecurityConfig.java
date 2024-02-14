@@ -40,7 +40,9 @@ public class WebSecurityConfig {
         security.csrf().disable()
                 .authorizeHttpRequests().
                 requestMatchers("/", "/register/**", "/signin", "/saveUser").permitAll()
-                .requestMatchers("/user/**").authenticated()
+                .requestMatchers(HttpMethod.GET,"/user/**").authenticated()
+                .requestMatchers(HttpMethod.GET, "/task/**").authenticated()
+                .requestMatchers(HttpMethod.POST,"/saveTask").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/signin")

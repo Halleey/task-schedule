@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tarefas</title>
+</head>
+<body>
+
+<h1>Lista de Tarefas</h1>
+
+<ul>
+    <!-- Iterar sobre as tarefas e exibi-las -->
+    <th:block th:each="task : ${tasks}">
+        <li th:text="${task.descricao}"></li>
+    </th:block>
+</ul>
+
+</body>
+</html>

@@ -19,4 +19,9 @@ public class BaseController {
     public String login() {
         return "login";
     }
+    @GetMapping("/user/task")
+    public String task() {
+        return "task-form";
+    }
+
 }
