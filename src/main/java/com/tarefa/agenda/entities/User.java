@@ -2,12 +2,16 @@ package com.tarefa.agenda.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.management.relation.Role;
 import java.util.List;
 
-@Data
-@Entity
+@Getter
+@Setter
 @Table(name = "users")
+@Entity
 public class User {
 
     @Id
@@ -16,7 +20,8 @@ public class User {
     private String name;
     private String email;
     private String password;
-
+    private String role;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Task> task;
+
 }

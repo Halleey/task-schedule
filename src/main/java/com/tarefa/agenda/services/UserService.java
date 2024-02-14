@@ -20,10 +20,10 @@ public class UserService implements UserInter {
     public User saveUser(User user) {
 
         String password=passwordEncoder.encode(user.getPassword());
+        user.setRole("ROLE_USER");
         user.setPassword(password);
-        User newuser = userRepo.save(user);
 
-        return newuser;
+        return userRepo.save(user);
     }
     public void removeSessionMessage() {
 

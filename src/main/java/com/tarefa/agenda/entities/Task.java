@@ -1,7 +1,5 @@
 package com.tarefa.agenda.entities;
-
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +13,9 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(length = 300)
     private String descricao;
+
     @ManyToOne
     private User user;
 }
