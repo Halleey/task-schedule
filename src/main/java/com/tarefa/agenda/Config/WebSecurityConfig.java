@@ -39,14 +39,13 @@ public class WebSecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
         security.csrf().disable()
                 .authorizeHttpRequests().
-                requestMatchers("/", "/register/**", "/signin").permitAll()
-                .requestMatchers(HttpMethod.POST, "/saveUser").permitAll()
+                requestMatchers("/", "/register/**", "/signin", "/saveUser").permitAll()
                 .requestMatchers("/user/**").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/signin")
                 .loginProcessingUrl("/userLogin")
-                .defaultSuccessUrl("/user/profile").permitAll();
+                .defaultSuccessUrl("/user/profile", true).permitAll();
 
         return security.build();
     }

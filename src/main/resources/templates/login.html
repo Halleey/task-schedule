@@ -3,7 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <!-- Adicione estilos personalizados aqui, se necessário -->
+    <style>
+        /* Adicione estilos personalizados aqui, se necessário */
+        .container {
+            padding: 3rem;
+        }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+        }
+        .card-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ccc;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 1rem;
+        }
+        .card-body {
+            padding: 2rem;
+        }
+        .mb-3 {
+            margin-bottom: 1rem;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+        }
+        .btn {
+            width: 100%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .text-danger {
+            color: #dc3545;
+        }
+        .text-success {
+            color: #28a745;
+        }
+    </style>
 </head>
 <body>
 <div class="container p-3">
@@ -21,14 +70,14 @@
                     <form action="userLogin" method="post">
 
                         <div class="mb-3">
-                            <label for="username">Enter Email</label>
-                            <input type="text" id="username" name="username" class="form-control">
+                            <label>Enter Email</label> <input type="text" name="username"
+                                                              class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label for="password">Enter Password</label>
-                            <input type="password" id="password" name="password" class="form-control">
+                            <label>Enter Password</label> <input type="text"
+                                                                 name="password" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-primary col-md-12">Login</button>
+                        <button class="btn col-md-12">Login</button>
                     </form>
                 </div>
             </div>
