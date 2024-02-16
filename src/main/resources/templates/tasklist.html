@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Tarefas</title>
-</head>
-<body>
-
-<h1>Lista de Tarefas</h1>
-
 <ul>
     <!-- Iterar sobre as tarefas e exibi-las -->
     <th:block th:each="task : ${tasks}">
-        <li th:text="${task.descricao}"></li>
+        <li>
+            <span th:text="${task.descricao}"></span>
+            <form method="post" action="/task/deleteTask">
+                <input type="hidden" name="taskId" th:value="${task.id}" />
+                <button type="submit">Excluir</button>
+            </form>
+        </li>
     </th:block>
 </ul>
-
-</body>
-</html>

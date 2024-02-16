@@ -34,7 +34,6 @@ public class WebSecurityConfig {
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         return daoAuthenticationProvider;
     }
-
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
         security.csrf().disable()
@@ -43,6 +42,7 @@ public class WebSecurityConfig {
                 .requestMatchers(HttpMethod.GET,"/user/**").authenticated()
                 .requestMatchers(HttpMethod.GET, "/task/**").authenticated()
                 .requestMatchers(HttpMethod.POST,"/saveTask").authenticated()
+                .requestMatchers(HttpMethod.POST, "/task/**").authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/signin")

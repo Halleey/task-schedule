@@ -8,9 +8,9 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.security.Principal;
 import java.util.List;
 
@@ -40,17 +40,14 @@ public class EntitiesController {
     }
     @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute User user, HttpSession session, Model m) {
-
-        // System.out.println(user);
-
+        
         User u = userService.saveUser(user);
-
         if (u != null) {
-            // System.out.println("save sucess");
+
             session.setAttribute("msg", "Cadastro concluído com sucesso!");
 
         } else {
-            // System.out.println("error in server");
+
             session.setAttribute("msg", "Something wrong server");
         }
         return "redirect:/index";
@@ -79,5 +76,10 @@ public class EntitiesController {
         model.addAttribute("tasks", tasks);
         return "tasklist";
     }
-
+    @PostMapping("/task/deleteTask")
+    public String deleteTask(@RequestParam("taskId") Long taskId, HttpSession session) {
+        taskService.deleteTaskById(taskId);
+        session.setAttribute("msg", "Tarefa excluída com sucesso!");
+        return "redirect:/task/tasklist";
+    }
 }
