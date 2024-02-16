@@ -1,8 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tarefas</title>
+  <style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    color: white;
+    background-color: black;
+    }
+
+    h1 {
+    color: #333;
+    }
+
+    ul {
+    list-style-type: none;
+    padding: 0;
+    }
+
+    li {
+    margin-bottom: 10px;
+    }
+
+    button {
+    background-color: #ff6347; /* Cor vermelha */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    }
+
+
+    button:hover {
+    background-color: #d32f2f;
+    }
+  </style>
+</head>
+<body>
 <ul>
     <!-- Iterar sobre as tarefas e exibi-las -->
     <th:block th:each="task : ${tasks}">
         <li>
             <span th:text="${task.descricao}"></span>
+            <span th:text="${task.name}"></span>
             <form method="post" action="/task/deleteTask">
                 <input type="hidden" name="taskId" th:value="${task.id}" />
                 <button type="submit">Excluir</button>
@@ -10,3 +54,5 @@
         </li>
     </th:block>
 </ul>
+</body>
+</html>
