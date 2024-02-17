@@ -3,49 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Tarefas</title>
-  <style>
-    body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    color: white;
-    background-color: black;
-    }
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: white;
+            background-color: dimgray;
+        }
 
-    h1 {
-    color: #333;
-    }
+        h1 {
+            color: #333;
+        }
 
-    ul {
-    list-style-type: none;
-    padding: 0;
-    }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-    li {
-    margin-bottom: 10px;
-    }
+        li {
+            margin-bottom: 20px; /* Aumentei a margem para melhorar a legibilidade */
+            padding: 10px;
+            background-color: #444; /* Alterei a cor de fundo para destacar as tarefas */
+            border-radius: 5px;
+        }
 
-    button {
-    background-color: #ff6347; /* Cor vermelha */
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    }
+        li:hover {
+            background-color: #555; /* Cor mais escura ao passar o mouse para indicar interação */
+        }
 
+        button {
+            background-color: #ff6347; /* Cor vermelha */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
 
-    button:hover {
-    background-color: #d32f2f;
-    }
-  </style>
+        button:hover {
+            background-color: #d32f2f;
+        }
+
+        span {
+            display: block; /* Alterei para display block para separar visualmente os elementos */
+            margin-bottom: 5px; /* Adicionei margem inferior para espaçamento entre os elementos */
+        }
+    </style>
 </head>
 <body>
 <ul>
     <!-- Iterar sobre as tarefas e exibi-las -->
     <th:block th:each="task : ${tasks}">
         <li>
+            <span>Título:</span>
             <span th:text="${task.descricao}"></span>
+            <span>Descrição:</span>
             <span th:text="${task.name}"></span>
             <form method="post" action="/task/deleteTask">
                 <input type="hidden" name="taskId" th:value="${task.id}" />
@@ -54,5 +67,6 @@
         </li>
     </th:block>
 </ul>
+<a href="/user/profile"><button>Voltar para o perfil</button></a>
 </body>
 </html>
