@@ -57,9 +57,9 @@
     <th:block th:each="task : ${tasks}">
         <li>
             <span>Título:</span>
-            <span th:text="${task.descricao}"></span>
-            <span>Descrição:</span>
             <span th:text="${task.name}"></span>
+            <span>Descrição:</span>
+            <span th:text="${task.descricao}"></span>
             <form method="post" action="/task/deleteTask">
                 <input type="hidden" name="taskId" th:value="${task.id}" />
                 <button type="submit">Excluir</button>

@@ -24,4 +24,6 @@ public class BaseController {
         return "task-form";
     }
 
+    @GetMapping("/user/task/alter")
+    public  String alterTask(){return "altertask";}
 }

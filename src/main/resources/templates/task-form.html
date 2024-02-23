@@ -75,10 +75,6 @@
                 <div class="card">
                     <div class="card-header text-center fs-4">Cadastrar Tarefa</div>
 
-                    <th:block th:if="${session.msg}">
-                        <p class="text-center text-success fs-4">[[${session.msg}]]</p>
-                    </th:block>
-
                     <div class="card-body">
                         <form action="/saveTask" method="post">
                             <div class="mb-3">

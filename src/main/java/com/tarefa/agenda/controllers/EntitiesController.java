@@ -28,16 +28,6 @@ public class EntitiesController {
     @Autowired
     private TaskService taskService;
 
-    @ModelAttribute
-    public void commonUser(Principal p, Model m) {
-        if (p != null) {
-            String email = p.getName();
-            User user = userRepo.findByEmail(email);
-
-            m.addAttribute("user", user);
-        }
-
-    }
     @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute User user, HttpSession session, Model m) {
         
@@ -82,4 +72,5 @@ public class EntitiesController {
         session.setAttribute("msg", "Tarefa excluída com sucesso!");
         return "redirect:/task/tasklist";
     }
+
 }
