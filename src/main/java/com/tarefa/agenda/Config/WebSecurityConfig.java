@@ -36,19 +36,18 @@ public class WebSecurityConfig {
     }
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
-        security.csrf().disable()
-                .authorizeHttpRequests().
-                requestMatchers("/", "/register/**", "/signin", "/saveUser").permitAll()
-                .requestMatchers(HttpMethod.GET,"/user/**").authenticated()
-                .requestMatchers(HttpMethod.GET, "/task/**").authenticated()
-                .requestMatchers(HttpMethod.POST,"/saveTask").authenticated()
-                .requestMatchers(HttpMethod.POST, "/task/**").authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/signin")
-                .loginProcessingUrl("/userLogin")
-                .defaultSuccessUrl("/user/profile", true).permitAll();
-
+        security.csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/", "/register/**", "/signin", "/saveUser").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/user/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/task/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/saveTask").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/task/**").authenticated()
+                ).formLogin((form) ->
+                        form.loginPage("/signin")
+                                .loginProcessingUrl("/userLogin")
+                                .defaultSuccessUrl("/user/profile", true).permitAll()
+                );
         return security.build();
     }
 }
