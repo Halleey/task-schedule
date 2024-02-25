@@ -40,7 +40,7 @@ public class EntitiesController {
 
             session.setAttribute("msg", "Something wrong server");
         }
-        return "redirect:/index";
+        return "redirect:/";
     }
     @PostMapping("/saveTask")
     public String saveTask(@ModelAttribute Task task, Principal principal, HttpSession session) {
